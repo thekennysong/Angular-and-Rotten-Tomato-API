@@ -1,1 +1,57 @@
-My Page
+<!DOCTYPE html>
+<html ng-app="movies">
+<head>
+	<title>Angular Demo</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+</head>
+<body>
+
+<div class="container">
+	<h1>Rotten Tomato Search</h1>
+<!--data might be appended because HTML5 syntax -->
+	<div ng-controller="MovieController">
+        <!--{{greeting}} &lt;!&ndash;data binding controllers &ndash;&gt;-->
+		<div class="row">
+			<div class="col-md-8">
+				<table class="table table-striped">
+
+					<tbody>
+						<div ng-repeat="movie in movies">
+                            <h1>{{movie.title}}</h1>
+                            <p>{{movie.runtime}} Minutes</p>
+                            <p>Audience Rating: {{movie.ratings.audience_rating}} </p> <!--//what goes inside are the property names that is seen through API -->
+                            <p>Audience Score: {{movie.ratings.audience_score}} </p>
+                            <ul ng-repeat="cast in movie.abridged_cast">
+                                <li>{{cast.name}}</li>
+                            </ul>
+						</div>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="col-md-4">
+
+				<h4>Search Movie</h4>
+
+				<form role="form" ng-submit="search()"> <!--submit allows us to listen for submit events -->
+					<div class="form-group">
+
+						<input ng-model="searchTerm" type="text" class="form-control">
+					</div>
+
+					<!--</div>-->
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="js/angular.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
